@@ -28,7 +28,7 @@ build: .GOPATH/.ok
 
 ##### =====> Utility targets <===== #####
 
-.PHONY: clean test list cover format
+.PHONY: clean test list cover format gen
 
 clean:
 	$Q rm -rf bin .GOPATH
@@ -71,6 +71,11 @@ endif
 format: bin/goimports .GOPATH/.ok
 	$Q find .GOPATH/src/$(IMPORT_PATH)/ -iname \*.go | grep -v \
 	    -e "^$$" $(addprefix -e ,$(IGNORED_PACKAGES)) | xargs ./bin/goimports -w
+
+gen: .GOPATH/.ok
+ 	@echo "Running go generate"
+ 	$Q cd $(CURDIR)/.GOPATH/src/$(IMPORT_PATH) && go generate
+ 	@echo "Done!"
 
 ##### =====> Internals <===== #####
 
