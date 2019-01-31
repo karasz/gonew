@@ -73,9 +73,9 @@ format: bin/goimports .GOPATH/.ok
 	    -e "^$$" $(addprefix -e ,$(IGNORED_PACKAGES)) | xargs ./bin/goimports -w
 
 gen: .GOPATH/.ok
- 	@echo "Running go generate"
- 	$Q cd $(CURDIR)/.GOPATH/src/$(IMPORT_PATH) && go generate
- 	@echo "Done!"
+	@echo "Running go generate"
+	$Q cd $(CURDIR)/.GOPATH/src/$(IMPORT_PATH) && go generate
+	@echo "Done!"
 
 ##### =====> Internals <===== #####
 
